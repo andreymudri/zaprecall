@@ -1,11 +1,11 @@
-import Reset from './styles/reset.css';
-
+import Reset from './styles/reset.js';
+import Main from './components/Main'
 
 function App() {
   return (
-    <div className="App">
-      <Reset />
-      
+    <div>
+      <Reset/>
+      <Main/>      
     </div>
   );
 }
