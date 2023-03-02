@@ -3,7 +3,7 @@ import { useState } from "react";
 import cards from "./cards";
 import logo from "../assets/logo.png";
 import Questions from "./Questions";
-import Answers from "./Anwers";
+
 export default function Main() {
   const [Count, setCount] = useState(0);
 
@@ -13,9 +13,7 @@ export default function Main() {
         <img src={logo} alt="logo" /> ZapRecall
       </header>
       <Questions Count={Count} setCount={setCount} cards={cards} />
-      <Footer data-test="footer">
-        <Answers />
-      </Footer>
+
     </ScreenBody>
   );
 }
@@ -45,21 +43,4 @@ const ScreenBody = styled.div`
       height: 60px;
     }
   }
-`;
-
-const Footer = styled.div`
-  display: flex;
-  position: absolute;
-  bottom: 0px;
-  width: 100vw;
-  height: 50px;
-  background-color: white;
-  align-items: center;
-  justify-content: center;
-  font-family: "Recursive";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #333333;
 `;

@@ -5,7 +5,7 @@ import { useState } from "react";
 import iconeCerto from "../assets/icone_certo.png";
 import iconeErro from "../assets/icone_erro.png";
 import iconeQuase from "../assets/icone_quase.png";
-import Answers from "./Anwers";
+import Answers from "./Answers";
 export default function Questions(props) {
   const [counts, setCounts] = useState(Array(props.cards.length).fill(0));
   const [icons, setIcons] = useState(Array(props.cards.length).fill(null));
@@ -13,6 +13,7 @@ export default function Questions(props) {
   function handleAnswer(answer) {
     setArray((prevArray) => [...prevArray, answer]);
     Answers(array);
+    console.log(array)
   }
 
   function handleCard(index, answer) {
@@ -21,7 +22,6 @@ export default function Questions(props) {
       newCounts[index] += 1;
       return newCounts;
     });
-
     setIcons((prevIcons) => {
       const newIcons = [...prevIcons];
       switch (answer) {
@@ -39,7 +39,7 @@ export default function Questions(props) {
       }
       return newIcons;
     });
-    handleAnswer(answer);
+    ;
   }
 
   return (
@@ -73,12 +73,13 @@ export default function Questions(props) {
             {counts[index] === 2 && (
               <span data-test="flashcard-text" className="teste">
                 <h1>
-                  {card.answer}
+                  {card.answer}''
                   <div>
                     <button
                       style={{ backgroundColor: "#FF3030" }}
                       data-test="no-btn"
                       onClick={() => {
+                        handleAnswer('errado');
                         handleCard(index, "errado");
                       }}
                     >
@@ -88,6 +89,7 @@ export default function Questions(props) {
                       style={{ backgroundColor: "#FF922E" }}
                       data-test="partial-btn"
                       onClick={() => {
+                        handleAnswer('quase');
                         handleCard(index, "quase");
                       }}
                     >
@@ -96,7 +98,10 @@ export default function Questions(props) {
                     <button
                       style={{ backgroundColor: "#2FBE34" }}
                       data-test="zap-btn"
-                      onClick={() => handleCard(index, "certo")}
+                      onClick={() => {
+                        handleAnswer('certo');
+                        handleCard(index, "certo");
+                      }}
                     >
                       Zap!
                     </button>
@@ -126,6 +131,9 @@ export default function Questions(props) {
               </span>
             )}
           </Flashcard>
+          <Footer data-test="footer">
+          <Answers completedCount={array.length} totalCount={props.cards.length} />
+      </Footer>
         </div>
       ))}
     </>
@@ -201,4 +209,22 @@ const Flashcard = styled.div`
     font-size: 12px;
     line-height: 14px;
   }
+`;
+
+const Footer = styled.div`
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 50px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  font-family: "Recursive";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #333333;
 `;
