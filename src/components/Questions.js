@@ -66,6 +66,7 @@ export default function Questions(props) {
                   src={viravira}
                   alt="viravira"
                   onClick={() => handleCard(index)}
+                  data-test="turn-btn"
                 />
               </span>
             )}
@@ -149,7 +150,7 @@ const Flashcard = styled.div`
     } else {
       return "131px";
     }
-  }};
+}};
 
   span {
     width: 100%;
@@ -213,7 +214,7 @@ const Flashcard = styled.div`
 
 const Footer = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   width: 100vw;

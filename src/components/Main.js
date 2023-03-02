@@ -24,6 +24,7 @@ const ScreenBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 
   header {
     display: flex;
