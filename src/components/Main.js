@@ -6,8 +6,8 @@ import Questions from './Questions';
 
 export default function Main() {
 
-    const [Resposta, setResposta] = useState(false);
-    
+    const [Count, setCount] = useState(0);
+
 
 
 
@@ -15,11 +15,12 @@ export default function Main() {
         <ScreenBody>
             <header><img src={logo} alt ="logo"/> ZapRecall</header>        
             <Questions
+                Count={Count}
+                setCount={setCount}
                 cards={cards}
-                Resposta={Resposta}
             />
-            <Footer>
-
+            <Footer data-test="footer">
+        0/x concluidos
             </Footer>
         </ScreenBody>
     )
@@ -44,6 +45,7 @@ const ScreenBody = styled.div`
         text-align: center;
         letter-spacing: -0.012em;
         margin-bottom:50px;
+        color: #FFFFFF;
         img{
         width: 52px;
         height: 60px;
@@ -62,4 +64,12 @@ bottom:0px;
 width: 100vw;
 height: 50px;
 background-color:white;
+align-items:center;
+justify-content:center;
+font-family: 'Recursive';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #333333;
 `;
