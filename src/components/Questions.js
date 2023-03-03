@@ -72,10 +72,11 @@ export default function Questions(props) {
             )}
 
             {counts[index] === 2 && (
-              <span data-test="flashcard-text" className="teste">
+              <p data-test="flashcard-text" className="teste">
                 <h1>
-                  {card.answer}''
-                  <div>
+                  {card.answer}
+                  </h1>
+                  <h4>
                     <button
                       style={{ backgroundColor: "#FF3030" }}
                       data-test="no-btn"
@@ -106,14 +107,15 @@ export default function Questions(props) {
                     >
                       Zap!
                     </button>
-                  </div>
-                </h1>
-              </span>
+                  </h4>
+
+              </p>
             )}
 
             {counts[index] === 3 && (
               <span data-test="flashcard-text">
-                Pergunta {index + 1}
+                <h2>
+               <div> Pergunta {index + 1}</div>
                 {icons[index] === iconeErro ? (
                   <img src={iconeErro} alt="Erro" data-test="no-icon" />
                 ) : (
@@ -128,7 +130,8 @@ export default function Questions(props) {
                   <img src={iconeCerto} alt="Certo" data-test="zap-icon" />
                 ) : (
                   ""
-                )}
+                  )}
+                  </h2>
               </span>
             )}
           </Flashcard>
@@ -145,13 +148,17 @@ const Flashcard = styled.div`
   width: 300px;
   margin: 5px;
   height: ${(props) => {
-    if (props.Counter === 0) {
+  switch(props.Counter) {
+    case 0:
       return "65px";
-    } else {
+    case 1:
       return "131px";
-    }
+    case 2:
+      return "131px";
+    default:
+      return "65px";
+  }
 }};
-
   span {
     width: 100%;
     display: flex;
@@ -159,7 +166,6 @@ const Flashcard = styled.div`
     align-items: center;
     margin-left: 10px;
   }
-
   background: #ffffff;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
@@ -193,11 +199,26 @@ const Flashcard = styled.div`
   h1 {
     display: flex;
     flex-direction: column;
+    align-items:center;
+
     div {
       display: flex;
       justify-content: center;
     }
   }
+  h2 {  
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+margin-bottom:${(props) => (props.Counter === 3 && "20px")}  
+  }
+
+h4 {
+  display:flex;
+  justify-content:center;
+}
+
   button {
     width: 85.17px;
     height: 37.17px;
@@ -209,7 +230,9 @@ const Flashcard = styled.div`
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
+  
   }
+  
 `;
 
 const Footer = styled.div`
